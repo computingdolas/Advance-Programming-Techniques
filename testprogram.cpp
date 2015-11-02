@@ -5,12 +5,16 @@ using namespace std;
 int main()
 
 {
+	
 	//bool result;
 	Matrix<double> m1(3,3,0.5);
-	Matrix<double> m2(3,3,1);
+	//Matrix<double> m2(3,3,1);
 	//Matrix m3(3,3,1);
-	m1 *=m2;
-	m1.display();
+	int a= m1(0,0);
+	m1(0,0) = 10;
+	//cout << a <<endl;	
+	cout<<m1;
+	
 	
 	return 0;
 	

@@ -192,14 +192,14 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix& obj)
 			sum =0;	
 				for (int k=0;k< obj.row;++k)
 				{
-					//cout<<"i"<<"  "<<"j"<<i<<"  "<<j<<"   "<<k<<endl;
+					cout<<"i"<<"  "<<"j"<<i<<"  "<<j<<"   "<<k<<endl;
 					sum+= ((*(ptr+(k+ i*(obj.row)))) * (*(obj.ptr +(k+j*(obj.row)))));
-					//cout<< *(ptr+(k+ i*(obj.row)))<<endl;
-					//cout<< *(obj.ptr + (k+ j*(obj.row)))<<endl;
-					//cout<<"the sum is "<<sum<<endl;
-					//cout<<" The iteration number is"<<k<<endl;
+					cout<< *(ptr+(k+ i*(obj.row)))<<endl;
+					cout<< *(obj.ptr + (k+ j*(obj.row)))<<endl;
+					cout<<"the sum is "<<sum<<endl;
+					cout<<" The iteration number is"<<k<<endl;
 				}
-				//cout<<"the total sum is"<<sum<<endl;
+				cout<<"the total sum is"<<sum<<endl;
 			*(m3.ptr +  i*(obj.col) +j) = sum;	
 			}
 		}
@@ -259,14 +259,16 @@ bool Matrix<T>:: operator !=(const Matrix& obj)
 template <class T>
 void Matrix<T>::display()
 {
-	Matrix temp=(* this);	
+	Matrix m3 = (* this);	
 	cout<<" The contents of the matrix are being displayed "<<endl;
 	int i ;
+	int j;
 		for (i=0;i<row;++i)
 		{		
 			cout<<endl;		
-			for (int j=0; j<col;++j)
-			cout<<temp(i,j)<<"\t\t";
+			for (j=0; j<col;++j)
+			//cout<<i<<"  "<<j<<endl;
+			cout<<(m3(i,j))<<"\t\t";
 			
 		}
 		

@@ -32,7 +32,7 @@ class Matrix
 
 
 	Matrix& operator = (const Matrix& obj);//Assignment Operator 
- 	void display();// Dislplay Function
+ 	void display() const ;// Dislplay Function
  
  	Matrix& operator+=(const Matrix& obj);
  	Matrix& operator-=(const Matrix& obj);
@@ -47,8 +47,8 @@ class Matrix
  	bool operator==(const Matrix& obj);
 
  	bool operator!=(const Matrix& obj); 
-	template <class U>
-	friend ostream& operator<<(ostream& os, Matrix<U>& obj ) ; 
+	//template <class U>
+	//ostream& operator<<(ostream& os,const Matrix<U>& obj ) ; 
 	
 
 };
@@ -259,7 +259,7 @@ bool Matrix<T>:: operator !=(const Matrix& obj)
 
 
 template <class T>
-void Matrix<T>::display()
+void Matrix<T>::display() const 
 {
 	Matrix m3 = (* this);	
 	cout<<" The contents of the matrix are being displayed "<<endl;
@@ -277,20 +277,11 @@ void Matrix<T>::display()
 }
 
 template <class T>
-ostream& operator<<(ostream& os, Matrix<T>& obj ) 
+ostream& operator<<(ostream& os,const Matrix<T>& obj ) 
 {
 	
 	
-	/*
-	int i ;
-		for (i=0;i<obj.row;++i)
-	{		
-			cout<<endl;		
-			for (int j=0; j<obj.col;++j)
-			os<<obj(i,j)<<"\t\t";
-			
-	}
-	*/
+	
 	obj.display();
 	return os;
 

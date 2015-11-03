@@ -7,18 +7,31 @@ int main()
 {
 	
 	//bool result;
-	Matrix<double> m1(3,3,1);
-	Matrix<double> m2(3,3,0.5);
-	Matrix <double> m3(3,3,0);
-	cout<<m1<<endl;
-	cout<<m2<<endl;
-	m3.display();
-	int a= m1(0,0);
-	
-	m1= m1* m2;
+	 Matrix<int> m1( 2,2,0 );
+ 	 Matrix<int> m2( 2,2,0 );
+ 	 Matrix<int> m3( 2,2,0 );
+ 	 
+
+   	m1(0,0) = 1;
+   	m1(0,1) = 2;
+   	m1(1,0) = 3;
+   	m1(1,1) = 1;
+   	cout<< m1;
+
+   	m2(0,0) = 4;
+   	m2(0,1) = 5;
+   	m2(1,0) = 2;
+   	m2(1,1) = 3;
+   	cout << m2;
+   	m3 = m1* m2,
+   	cout<< m3;
+
+   Matrix<int> sum  ( m1+m2 );
+   Matrix<int> prod ( m1*m2 );
+   	cout<<sum(0,0);
 
 	//cout << a <<endl;	
-	m1.display();
+	
 	
 	
 	return 0;

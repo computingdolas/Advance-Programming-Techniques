@@ -179,6 +179,7 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix& obj)
 {
 	 assert(this->col == obj.row);
 		
+		Matrix temp (* this );		
 		cout<<"Assignment Matrix Mult is created"<<endl;
 		int j;
 		double sum;
@@ -192,12 +193,13 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix& obj)
 			sum =0;	
 				for (int k=0;k< obj.row;++k)
 				{
-					cout<<"i"<<"  "<<"j"<<i<<"  "<<j<<"   "<<k<<endl;
-					sum+= ((*(ptr+(k+ i*(obj.row)))) * (*(obj.ptr +(k+j*(obj.row)))));
-					cout<< *(ptr+(k+ i*(obj.row)))<<endl;
-					cout<< *(obj.ptr + (k+ j*(obj.row)))<<endl;
-					cout<<"the sum is "<<sum<<endl;
-					cout<<" The iteration number is"<<k<<endl;
+					//cout<<"i"<<"  "<<"j"<<i<<"  "<<j<<"   "<<k<<endl;
+					//sum+= ((*(ptr+(k+ i*(obj.row)))) * (*(obj.ptr +(k+j*(obj.row)))));
+					//cout<< *(ptr+(k+ i*(obj.row)))<<endl;
+					//cout<< *(obj.ptr + (k+ j*(obj.row)))<<endl;
+					//cout<<"the sum is "<<sum<<endl;
+					//cout<<" The iteration number is"<<k<<endl;
+					sum+= temp(i,k)* obj(k,j);
 				}
 				cout<<"the total sum is"<<sum<<endl;
 			*(m3.ptr +  i*(obj.col) +j) = sum;	

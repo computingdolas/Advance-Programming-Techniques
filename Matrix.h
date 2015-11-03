@@ -32,7 +32,7 @@ class Matrix
 
 
 	Matrix& operator = (const Matrix& obj);//Assignment Operator 
- 	void display();// Dislplay Function
+ 	void display() const ;// Dislplay Function
  
  	Matrix& operator+=(const Matrix& obj);
  	Matrix& operator-=(const Matrix& obj);
@@ -47,8 +47,8 @@ class Matrix
  	bool operator==(const Matrix& obj);
 
  	bool operator!=(const Matrix& obj); 
-	template <class U>
-	friend ostream& operator<<(ostream& os, Matrix<U>& obj ) ; 
+	//template <class U>
+	//ostream& operator<<(ostream& os,const Matrix<U>& obj ) ; 
 	
 
 };
@@ -68,7 +68,7 @@ T& Matrix<T>:: operator()(int r, int c )
 template <class T>
 Matrix<T>::Matrix(int nrow, int ncol ,T ini)
 {
-	cout<<" constructor created "<<endl;
+	//cout<<" constructor created "<<endl;
 	
 	row= nrow ;
 	col= ncol ;
@@ -93,14 +93,14 @@ template <class T>
 Matrix<T>::~Matrix()
 {
 
-	cout<<" Destructor called"<<endl;
+	//cout<<" Destructor called"<<endl;
 	delete [] ptr;
 			
 }
 template <class T>
 Matrix<T>& Matrix<T>:: operator = (const Matrix& obj)
 {
-	cout<<"The Assignment copy constructor is created"<<endl;
+	//cout<<"The Assignment copy constructor is created"<<endl;
 	if (this != &obj)
 	{
 		row= obj.row;
@@ -117,7 +117,7 @@ template <class T>
 Matrix<T>::Matrix(const Matrix &obj)
 
 {
-	cout<<" The copy constructor is created "<<endl;
+	//cout<<" The copy constructor is created "<<endl;
 	row= obj.row ;
 	col = obj.col ;
 	ptr = new T [row*col];
@@ -128,7 +128,7 @@ Matrix<T>::Matrix(const Matrix &obj)
 template <class T>
 Matrix<T>& Matrix<T>::operator+=(const Matrix& obj)
 {
-	cout<<" Assignment addition operator is called"<<endl;
+	//cout<<" Assignment addition operator is called"<<endl;
 	row=obj.row;
 	col=obj.col;
 	for (int i= 0;i <row*col;++i)
@@ -141,7 +141,7 @@ Matrix<T>& Matrix<T>::operator+=(const Matrix& obj)
 template <class T>
 Matrix<T>& Matrix<T>::operator-=(const Matrix& obj)
 {
-	cout<<" Assignment subtraction operator is called "<<endl;
+	//cout<<" Assignment subtraction operator is called "<<endl;
 	row=obj.row;
 	col=obj.col;
 	for(int i=0;i<row*col;++i)
@@ -155,7 +155,7 @@ Matrix<T>& Matrix<T>::operator-=(const Matrix& obj)
 template <class T>
 Matrix<T> Matrix<T>::operator+(const Matrix& obj) const
 {
-	cout<<" the Assignment binary addition operator is created"<<endl;
+	//cout<<" the Assignment binary addition operator is created"<<endl;
 	Matrix temp(*this);
 	temp+= obj;
 	return temp;
@@ -166,7 +166,7 @@ Matrix<T> Matrix<T>::operator+(const Matrix& obj) const
 template <class T>
 Matrix<T> Matrix<T>::operator-(const Matrix& obj) const
 {	
-	cout<<" the Assignment binary substraction operator is created"<<endl;
+	//cout<<" the Assignment binary substraction operator is created"<<endl;
 	Matrix temp(* this);
 	temp-=obj;
 	return temp;
@@ -179,7 +179,8 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix& obj)
 {
 	 assert(this->col == obj.row);
 		
-		cout<<"Assignment Matrix Mult is created"<<endl;
+		Matrix temp (* this );		
+		//cout<<"Assignment Matrix Mult is created"<<endl;
 		int j;
 		double sum;
 		int colu =obj.col;
@@ -192,14 +193,15 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix& obj)
 			sum =0;	
 				for (int k=0;k< obj.row;++k)
 				{
-					cout<<"i"<<"  "<<"j"<<i<<"  "<<j<<"   "<<k<<endl;
-					sum+= ((*(ptr+(k+ i*(obj.row)))) * (*(obj.ptr +(k+j*(obj.row)))));
-					cout<< *(ptr+(k+ i*(obj.row)))<<endl;
-					cout<< *(obj.ptr + (k+ j*(obj.row)))<<endl;
-					cout<<"the sum is "<<sum<<endl;
-					cout<<" The iteration number is"<<k<<endl;
+					//cout<<"i"<<"  "<<"j"<<i<<"  "<<j<<"   "<<k<<endl;
+					//sum+= ((*(ptr+(k+ i*(obj.row)))) * (*(obj.ptr +(k+j*(obj.row)))));
+					//cout<< *(ptr+(k+ i*(obj.row)))<<endl;
+					//cout<< *(obj.ptr + (k+ j*(obj.row)))<<endl;
+					//cout<<"the sum is "<<sum<<endl;
+					//cout<<" The iteration number is"<<k<<endl;
+					sum+= temp(i,k)* obj(k,j);
 				}
-				cout<<"the total sum is"<<sum<<endl;
+				//cout<<"the total sum is"<<sum<<endl;
 			*(m3.ptr +  i*(obj.col) +j) = sum;	
 			}
 		}
@@ -212,7 +214,7 @@ Matrix<T>& Matrix<T>::operator*=(const Matrix& obj)
 template <class T>
 Matrix<T> Matrix<T>::operator*(const Matrix& obj)
 {
-	cout<<" The binary Assignment multiplication operator is initialised "<<endl;
+	//cout<<" The binary Assignment multiplication operator is initialised "<<endl;
 	Matrix temp(*this);
 	temp *= obj;
 	return temp;
@@ -257,10 +259,10 @@ bool Matrix<T>:: operator !=(const Matrix& obj)
 
 
 template <class T>
-void Matrix<T>::display()
+void Matrix<T>::display() const 
 {
 	Matrix m3 = (* this);	
-	cout<<" The contents of the matrix are being displayed "<<endl;
+	//cout<<" The contents of the matrix are being displayed "<<endl;
 	int i ;
 	int j;
 		for (i=0;i<row;++i)
@@ -275,20 +277,11 @@ void Matrix<T>::display()
 }
 
 template <class T>
-ostream& operator<<(ostream& os, Matrix<T>& obj ) 
+ostream& operator<<(ostream& os,const Matrix<T>& obj ) 
 {
 	
 	
-	/*
-	int i ;
-		for (i=0;i<obj.row;++i)
-	{		
-			cout<<endl;		
-			for (int j=0; j<obj.col;++j)
-			os<<obj(i,j)<<"\t\t";
-			
-	}
-	*/
+	
 	obj.display();
 	return os;
 

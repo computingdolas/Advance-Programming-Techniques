@@ -46,6 +46,8 @@ void testArithmeticOperators()
 
    Matrix<int> sum  ( m1+m2 );
    Matrix<int> prod ( m1*m2 );
+   
+   
 
    assert( sum(0,0) == 5 );
    assert( sum(0,1) == 7 );
@@ -53,6 +55,7 @@ void testArithmeticOperators()
    assert( sum(1,1) == 4 );
 
    assert( prod(0,0) ==  8 );
+   
    assert( prod(0,1) == 11 );
    assert( prod(1,0) == 14 );
    assert( prod(1,1) == 18 );
@@ -93,9 +96,9 @@ template<typename T>
 void functionTakingConstMatrix( const Matrix<T> & m )
 {
     std::cout << m(0,0) << std::endl;
-    // Print to cout in the following format:
-    // columns should be separated with one or more spaces or tabs, rows with newlines
-    std::cout << m << std::endl;
+     //Print to cout in the following format:
+     //columns should be separated with one or more spaces or tabs, rows with newlines
+    cout << m << std::endl;
 }
 
 void testConstCapabilities()
